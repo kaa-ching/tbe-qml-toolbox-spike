@@ -39,6 +39,7 @@
 ****************************************************************************/
 
 import QtQuick 2.0
+import QtQuick.Controls 1.4
 import "content"
 
 // This example illustrates expanding a list item to show a more detailed view.
@@ -53,7 +54,7 @@ Rectangle {
     // 2. Details mode, which also shows the ingredients and method.
     Component {
         id: recipeDelegate
-//! [0]
+
         Item {
             id: recipe
 
@@ -62,7 +63,7 @@ Rectangle {
             // rather than having a "PropertyChanges" line for each element we
             // want to fade.
             property real detailsOpacity : 0
-//! [0]
+
             width: listView.width
             height: 70
 
@@ -98,7 +99,7 @@ Rectangle {
                     width: 50; height: 50
                     source: picture
                 }
-//! [1]
+
                 Column {
                     width: background.width - recipeImage.width - 20; height: recipeImage.height
                     spacing: 5
@@ -108,30 +109,31 @@ Rectangle {
                         font.bold: true; font.pointSize: 16
                     }
 
-                    SmallText {
+                    Text {
                         text: "Ingredients"
+                        font.pointSize: 12
                         font.bold: true
                         opacity: recipe.detailsOpacity
                     }
 
-                    SmallText {
+                    Text {
                         text: ingredients
                         wrapMode: Text.WordWrap
+                        font.pointSize: 12
                         width: parent.width
                         opacity: recipe.detailsOpacity
                     }
                 }
             }
 
-//! [2]
             Item {
                 id: details
                 x: 10; width: parent.width - 20
 
                 anchors { top: topLayout.bottom; topMargin: 10; bottom: parent.bottom; bottomMargin: 10 }
                 opacity: recipe.detailsOpacity
-//! [2]
-                SmallText {
+
+                Text {
                     id: methodTitle
                     anchors.top: parent.top
                     text: "Method"
@@ -159,11 +161,10 @@ Rectangle {
                     source: "content/pics/moreDown.png"
                     opacity: flick.atYEnd ? 0 : 1
                 }
-//! [3]
             }
 
             // A button to close the detailed view, i.e. set the state back to default ('').
-            TextButton {
+            Button {
                 y: 10
                 anchors { right: background.right; rightMargin: 10 }
                 opacity: recipe.detailsOpacity
@@ -195,7 +196,6 @@ Rectangle {
                 }
             }
         }
-//! [3]
     }
 
     // The actual list

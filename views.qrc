@@ -2,8 +2,6 @@
     <qresource prefix="/views">
         <file>listview/expandingdelegates.qml</file>
         <file>listview/content/RecipesModel.qml</file>
-        <file>listview/content/SmallText.qml</file>
-        <file>listview/content/TextButton.qml</file>
         <file>listview/content/pics/fruit-salad.jpg</file>
         <file>listview/content/pics/hamburger.jpg</file>
         <file>listview/content/pics/lemonade.jpg</file>
