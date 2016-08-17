@@ -5,8 +5,6 @@
         <file>listview/content/pics/fruit-salad.jpg</file>
         <file>listview/content/pics/hamburger.jpg</file>
         <file>listview/content/pics/lemonade.jpg</file>
-        <file>listview/content/pics/moreDown.png</file>
-        <file>listview/content/pics/moreUp.png</file>
         <file>listview/content/pics/pancakes.jpg</file>
         <file>listview/content/pics/vegetable-soup.jpg</file>
     </qresource>

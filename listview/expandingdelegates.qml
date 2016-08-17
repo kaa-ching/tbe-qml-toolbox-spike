@@ -111,34 +111,13 @@ Rectangle {
                 }
             }
 
-            Item {
-                id: details
-                x: 10; width: parent.width - 20
-
-                anchors { top: topLayout.bottom; topMargin: 10; bottom: parent.bottom; bottomMargin: 10 }
+            Text {
+                id: tooltipText
+                text: tooltip
+                anchors { top: topLayout.bottom }
+                wrapMode: Text.Wrap
+                width: parent.width
                 opacity: recipe.detailsOpacity
-
-                Flickable {
-                    id: flick
-                    width: parent.width
-                    anchors { top: parent.top; bottom: parent.bottom }
-                    contentHeight: tooltipText.height
-                    clip: true
-
-                    Text { id: tooltipText; text: tooltip; wrapMode: Text.WordWrap; width: details.width }
-                }
-
-                Image {
-                    anchors { right: flick.right; top: flick.top }
-                    source: "content/pics/moreUp.png"
-                    opacity: flick.atYBeginning ? 0 : 1
-                }
-
-                Image {
-                    anchors { right: flick.right; bottom: flick.bottom }
-                    source: "content/pics/moreDown.png"
-                    opacity: flick.atYEnd ? 0 : 1
-                }
             }
 
             // A button to close the detailed view, i.e. set the state back to default ('').
