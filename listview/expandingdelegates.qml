@@ -59,10 +59,7 @@ Rectangle {
             id: recipe
 
             // Create a property to contain the visibility of the details.
-            // We can bind multiple element's opacity to this one property,
-            // rather than having a "PropertyChanges" line for each element we
-            // want to fade.
-            property real detailsOpacity : 0
+            property bool isOpened : false
 
             width: listView.width
             height: 70
@@ -107,6 +104,7 @@ Rectangle {
                     Text {
                         text: name
                         font.bold: true; font.pointSize: 16
+                        wrapMode: Text.Wrap
                     }
                 }
             }
@@ -117,14 +115,14 @@ Rectangle {
                 anchors { top: topLayout.bottom }
                 wrapMode: Text.Wrap
                 width: parent.width
-                opacity: recipe.detailsOpacity
+                visible: recipe.isOpened
             }
 
             // A button to close the detailed view, i.e. set the state back to default ('').
             Button {
                 y: 10
                 anchors { right: background.right; rightMargin: 10 }
-                opacity: recipe.detailsOpacity
+                visible: recipe.isOpened
                 text: "Close"
 
                 onClicked: recipe.state = '';
@@ -135,8 +133,8 @@ Rectangle {
 
                 PropertyChanges { target: background; color: "white" }
                 PropertyChanges { target: recipeImage; width: 130; height: 130 } // Make picture bigger
-                PropertyChanges { target: recipe; detailsOpacity: 1; x: 0 } // Make details visible
-                PropertyChanges { target: recipe; height: listView.height } // Fill the entire list area with the detailed view
+                PropertyChanges { target: recipe; isOpened: true; } // Make details visible
+                PropertyChanges { target: recipe; height: tooltipText.height + 20 + recipeImage.height } // Ensure we can see the full tooltip+image
 
                 // Move the list so that this item is at the top.
                 PropertyChanges { target: recipe.ListView.view; explicit: true; contentY: recipe.y }
@@ -149,7 +147,7 @@ Rectangle {
                 // Make the state changes smooth
                 ParallelAnimation {
                     ColorAnimation { property: "color"; duration: 500 }
-                    NumberAnimation { duration: 300; properties: "detailsOpacity,x,contentY,height,width" }
+                    NumberAnimation { duration: 300; properties: "contentY,height,width" }
                 }
             }
         }
