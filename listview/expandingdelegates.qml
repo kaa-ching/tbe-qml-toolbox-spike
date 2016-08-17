@@ -105,23 +105,8 @@ Rectangle {
                     spacing: 5
 
                     Text {
-                        text: title
+                        text: name
                         font.bold: true; font.pointSize: 16
-                    }
-
-                    Text {
-                        text: "Ingredients"
-                        font.pointSize: 12
-                        font.bold: true
-                        opacity: recipe.detailsOpacity
-                    }
-
-                    Text {
-                        text: ingredients
-                        wrapMode: Text.WordWrap
-                        font.pointSize: 12
-                        width: parent.width
-                        opacity: recipe.detailsOpacity
                     }
                 }
             }
@@ -133,21 +118,14 @@ Rectangle {
                 anchors { top: topLayout.bottom; topMargin: 10; bottom: parent.bottom; bottomMargin: 10 }
                 opacity: recipe.detailsOpacity
 
-                Text {
-                    id: methodTitle
-                    anchors.top: parent.top
-                    text: "Method"
-                    font.pointSize: 12; font.bold: true
-                }
-
                 Flickable {
                     id: flick
                     width: parent.width
-                    anchors { top: methodTitle.bottom; bottom: parent.bottom }
-                    contentHeight: methodText.height
+                    anchors { top: parent.top; bottom: parent.bottom }
+                    contentHeight: tooltipText.height
                     clip: true
 
-                    Text { id: methodText; text: method; wrapMode: Text.WordWrap; width: details.width }
+                    Text { id: tooltipText; text: tooltip; wrapMode: Text.WordWrap; width: details.width }
                 }
 
                 Image {
