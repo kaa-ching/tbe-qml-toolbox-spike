@@ -42,122 +42,150 @@ import QtQuick 2.0
 import QtQuick.Controls 1.4
 import "content"
 
-// This example illustrates expanding a list item to show a more detailed view.
+Row {
+    id: masterpage
+    width: 800; height: 400
 
-Rectangle {
-    id: page
-    width: 400; height: 240
-    color: "black"
-
-    // Delegate for the recipes.  This delegate has two modes:
-    // 1. List mode (default), which just shows the picture and title of the recipe.
-    // 2. Details mode, which also shows the ingredients and method.
-    Component {
-        id: recipeDelegate
-
-        Item {
-            id: recipe
-
-            // Create a property to contain the visibility of the details.
-            property bool isOpened : false
-
-            width: listView.width
-            height: 70
-
-            // A simple rounded rectangle for the background
-            Rectangle {
-                id: background
-                x: 2; y: 2; width: parent.width - x*2; height: parent.height - y*2
-                color: "ivory"
-                border.color: "orange"
-                radius: 5
+    Rectangle {
+        id: view
+        gradient: Gradient {
+            GradientStop {
+                position: 0.00;
+                color: "#6baaf1";
             }
-
-            // This mouse region covers the entire delegate.
-            // When clicked it changes mode to 'Details'.  If we are already
-            // in Details mode, then no change will happen.
-//! [1]
-            MouseArea {
-                anchors.fill: parent
-                onClicked: recipe.state = 'Details';
+            GradientStop {
+                position: 0.64;
+                color: "#ffffff";
             }
+            GradientStop {
+                position: 0.98;
+                color: "#175800";
+            }
+        }
+        anchors { left: parent.left; top: parent.top; right: toolbox.left}
 
-            // Lay out the page: picture, title and ingredients at the top, and method at the
-            // bottom.  Note that elements that should not be visible in the list
-            // mode have their opacity set to recipe.detailsOpacity.
+        height: width * 0.7
+    }
 
-            Row {
-                id: topLayout
-                x: 10; y: 10; height: recipeImage.height; width: parent.width
-                spacing: 10
+    Rectangle {
+        id: toolbox
 
-                Image {
-                    id: recipeImage
-                    width: 50; height: 50
-                    source: picture
+        anchors {right: parent.right; top: parent.top; bottom: parent.bottom}
+
+        width: 400;
+        color: "black"
+
+        // Delegate for the recipes.  This delegate has two modes:
+        // 1. List mode (default), which just shows the picture and title of the recipe.
+        // 2. Details mode, which also shows the ingredients and method.
+        Component {
+            id: recipeDelegate
+
+            Item {
+                id: recipe
+
+                // Create a property to contain the visibility of the details.
+                property bool isOpened : false
+
+                width: listView.width
+                height: 70
+
+                // A simple rounded rectangle for the background
+                Rectangle {
+                    id: background
+                    x: 2; y: 2; width: parent.width - x*2; height: parent.height - y*2
+                    color: "ivory"
+                    border.color: "orange"
+                    radius: 5
                 }
 
-                Column {
-                    width: background.width - recipeImage.width - 20; height: recipeImage.height
-                    spacing: 5
+                // This mouse region covers the entire delegate.
+                // When clicked it changes mode to 'Details'.  If we are already
+                // in Details mode, then no change will happen.
+                //! [1]
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: recipe.state = 'Details';
+                }
 
-                    Text {
-                        text: name
-                        font.bold: true; font.pointSize: 16
-                        wrapMode: Text.Wrap
+                // Lay out the page: picture, title and ingredients at the top, and method at the
+                // bottom.
+                // Note that elements that should not be visible in the list track recipe.isOpened.
+
+                Row {
+                    id: topLayout
+                    x: 10; y: 10; height: recipeImage.height; width: parent.width
+                    spacing: 10
+
+                    Image {
+                        id: recipeImage
+                        width: 50; height: 50
+                        source: picture
+                    }
+
+                    Column {
+                        width: background.width - recipeImage.width - 20; height: recipeImage.height
+                        spacing: 5
+
+                        Text {
+                            text: name
+                            font.bold: true; font.pointSize: 16
+                            wrapMode: Text.Wrap
+                        }
+                    }
+                }
+
+                Text {
+                    id: tooltipText
+                    text: tooltip
+                    anchors { top: topLayout.bottom }
+                    wrapMode: Text.Wrap
+                    width: parent.width
+                    visible: recipe.isOpened
+                }
+
+                // A button to close the detailed view, i.e. set the state back to default ('').
+                Button {
+                    y: 10
+                    anchors { right: background.right; rightMargin: 10 }
+                    visible: recipe.isOpened
+                    text: "Close"
+
+                    onClicked: recipe.state = '';
+                }
+
+                states: State {
+                    name: "Details"
+
+                    PropertyChanges { target: background; color: "white" }
+                    PropertyChanges { target: recipeImage; width: 130; height: 130 } // Make picture bigger
+                    PropertyChanges { target: recipe; isOpened: true; } // Make details visible
+                    PropertyChanges { target: recipe; height: tooltipText.height + 20 + recipeImage.height } // Ensure we can see the full tooltip+image
+
+                    // Move the list so that this item is at the top.
+                    PropertyChanges { target: recipe.ListView.view; explicit: true; contentY: recipe.y }
+
+                    // Disallow flicking while we're in detailed view
+                    PropertyChanges { target: recipe.ListView.view; interactive: false }
+                }
+
+                transitions: Transition {
+                    // Make the state changes smooth
+                    ParallelAnimation {
+                        ColorAnimation { property: "color"; duration: 500 }
+                        NumberAnimation { duration: 300; properties: "contentY,height,width" }
                     }
                 }
             }
+        }
 
-            Text {
-                id: tooltipText
-                text: tooltip
-                anchors { top: topLayout.bottom }
-                wrapMode: Text.Wrap
-                width: parent.width
-                visible: recipe.isOpened
-            }
-
-            // A button to close the detailed view, i.e. set the state back to default ('').
-            Button {
-                y: 10
-                anchors { right: background.right; rightMargin: 10 }
-                visible: recipe.isOpened
-                text: "Close"
-
-                onClicked: recipe.state = '';
-            }
-
-            states: State {
-                name: "Details"
-
-                PropertyChanges { target: background; color: "white" }
-                PropertyChanges { target: recipeImage; width: 130; height: 130 } // Make picture bigger
-                PropertyChanges { target: recipe; isOpened: true; } // Make details visible
-                PropertyChanges { target: recipe; height: tooltipText.height + 20 + recipeImage.height } // Ensure we can see the full tooltip+image
-
-                // Move the list so that this item is at the top.
-                PropertyChanges { target: recipe.ListView.view; explicit: true; contentY: recipe.y }
-
-                // Disallow flicking while we're in detailed view
-                PropertyChanges { target: recipe.ListView.view; interactive: false }
-            }
-
-            transitions: Transition {
-                // Make the state changes smooth
-                ParallelAnimation {
-                    ColorAnimation { property: "color"; duration: 500 }
-                    NumberAnimation { duration: 300; properties: "contentY,height,width" }
-                }
-            }
+        // The actual list
+        ListView {
+            id: listView
+            anchors.fill: parent
+            model: RecipesModel {}
+            delegate: recipeDelegate
         }
     }
 
-    // The actual list
-    ListView {
-        id: listView
-        anchors.fill: parent
-        model: RecipesModel {}
-        delegate: recipeDelegate
-    }
 }
