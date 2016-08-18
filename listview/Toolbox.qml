@@ -98,9 +98,16 @@ Rectangle {
                     spacing: 5
 
                     Text {
-                        text: name
-                        font.bold: true; font.pointSize: 16
+                        text: "%1x %2".arg(count).arg(name)
+                        font.bold: true; font.pointSize: 14
                         wrapMode: Text.Wrap
+                    }
+                    // A button to close the detailed view, i.e. set the state back to default ('').
+                    Button {
+                        visible: recipe.isOpened
+                        text: "Close"
+
+                        onClicked: recipe.state = '';
                     }
                 }
             }
@@ -110,19 +117,11 @@ Rectangle {
                 text: tooltip
                 anchors { top: topLayout.bottom }
                 wrapMode: Text.Wrap
-                width: parent.width
+                width: parent.width-14
+                x: 10
                 visible: recipe.isOpened
             }
 
-            // A button to close the detailed view, i.e. set the state back to default ('').
-            Button {
-                y: 10
-                anchors { right: background.right; rightMargin: 10 }
-                visible: recipe.isOpened
-                text: "Close"
-
-                onClicked: recipe.state = '';
-            }
 
             states: State {
                 name: "Details"
