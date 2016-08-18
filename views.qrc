@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/views">
-        <file>listview/expandingdelegates.qml</file>
+        <file>listview/Toolbox.qml</file>
+        <file>main.qml</file>
         <file>listview/content/RecipesModel.qml</file>
         <file>listview/content/pics/fruit-salad.jpg</file>
         <file>listview/content/pics/hamburger.jpg</file>

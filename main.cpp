@@ -38,4 +38,4 @@
 **
 ****************************************************************************/
 #include "shared.h"
-DECLARATIVE_EXAMPLE_MAIN(views/listview/expandingdelegates)
+DECLARATIVE_EXAMPLE_MAIN(views/main)

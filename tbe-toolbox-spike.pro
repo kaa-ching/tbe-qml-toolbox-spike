@@ -7,3 +7,6 @@ RESOURCES += \
 
 target.path = $$[QT_INSTALL_EXAMPLES]/quick/views
 INSTALLS += target
+
+DISTFILES += \
+    main.qml
