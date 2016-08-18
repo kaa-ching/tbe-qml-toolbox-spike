@@ -29,7 +29,7 @@ Row {
 
     Toolbox {
         id: toolbox
-        width: 400;
+        width: 250;
         anchors {right: parent.right; top: parent.top; bottom: parent.bottom}
     }
 }

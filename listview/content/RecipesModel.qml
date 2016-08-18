@@ -44,45 +44,33 @@ ListModel {
     ListElement {
         name: "Volley Ball"
         count: 3
-        picture: "content/pics/pancakes.jpg"
-        tooltip: "<html>
-                  <ol>
-                   <li> Sift flour and sugar together into a bowl. Add a pinch of salt.
-                   <li> Beat milk and egg together, then add to dry ingredients. Beat until smooth.
-                   <li> Pour mixture into a pan on medium heat and cook until bubbles appear on the surface.
-                   <li> Turn over and cook other side until golden.
-                  </ol>
-                 </html>"
+        picture: "content/pics/VolleyBall.svg"
+        width: 0.21
+        height: 0.21
+        tooltip: "A volleyball is light and very bouncy."
     }
     ListElement {
         name: "Left Ramp"
         count: 1
-        picture: "content/pics/fruit-salad.jpg"
-        tooltip: "* Chop fruit and place in a bowl."
+        width: 1.0
+        height: 0.4
+        picture: "content/pics/LeftRamp.svg"
+        tooltip: "This is a ramp.\nThe left is lower than the right, so things slide to the left."
     }
     ListElement {
         name: "Penguin"
         count: 2
-        picture: "content/pics/vegetable-soup.jpg"
-        tooltip: "<html>
-                  <ol>
-                   <li> Chop vegetables.
-                   <li> Boil in water until vegetables soften.
-                   <li> Season with salt and pepper to taste.
-                  </ol>
-                 </html>"
+        width: 0.28
+        height: 0.28
+        picture: "content/pics/pinguswalkleft.png"
+        tooltip: "A penguin walks left or right and turns around when\nit collides with something heavy. It can push\nlight objects around. It also likes to slide down\nslopes but can’t take much abuse."
     }
     ListElement {
         name: "Balloon"
         count: 5
-        picture: "content/pics/hamburger.jpg"
-        tooltip: "<html>
-                  <ol>
-                   <li> Mix the beef, together with seasoning, in a food processor.
-                   <li> Shape the beef into burgers.
-                   <li> Grill the burgers for about 5 mins on each side (until cooked through)
-                   <li> Serve each burger on a bun with ketchup, cheese, lettuce, tomato and onion.
-                  </ol>
-                 </html>"
+        width: 0.27
+        height: 0.36
+        picture: "content/pics/Balloon.svg"
+        tooltip: "A helium balloon. Lighter than air, it moves up.\nIt will pop when it hits sharp objects or gets squashed."
     }
 }
