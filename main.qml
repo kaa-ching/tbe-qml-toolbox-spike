@@ -2,7 +2,7 @@ import QtQuick 2.0
 import "listview"
 
 Row {
-    id: masterpage
+    id: window
     width: 800; height: 400
 
     Rectangle {

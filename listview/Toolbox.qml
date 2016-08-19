@@ -41,6 +41,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
 import "content"
+//import "content/PaletteItem.qml"
 
 Rectangle {
     color: "black"
@@ -87,7 +88,7 @@ Rectangle {
                 x: 10; y: 10; height: recipeImage.height; width: parent.width
                 spacing: 10
 
-                Image {
+                PaletteItem {
                     id: recipeImage
                     width: 50; height: 50
                     source: picture
