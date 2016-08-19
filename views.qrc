@@ -9,5 +9,6 @@
         <file>listview/content/pics/Balloon.svg</file>
         <file>listview/content/pics/VolleyBall.svg</file>
         <file>listview/content/pics/pinguswalkleft.png</file>
+        <file>listview/content/ViewItem.qml</file>
     </qresource>
 </RCC>

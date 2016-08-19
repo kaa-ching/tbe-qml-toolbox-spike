@@ -44,7 +44,6 @@ import "itemCreation.js" as Code
 Image {
     id: paletteItem
 
-    property string componentFile
     property string image
 
     source: image
@@ -52,11 +51,9 @@ Image {
     MouseArea {
         anchors.fill: parent
 
-        // ensure that non-drag events arrive in 'recipe'
+        // ensure that non-drag 'click' events arrive in 'recipe'
         propagateComposedEvents: true
         onClicked: mouse.accepted = false;
-        onDoubleClicked: mouse.accepted = false;
-        onPressAndHold: mouse.accepted = false;
 
         // we keep drag&drop events here
         onPressed: Code.startDrag(mouse);

@@ -5,10 +5,6 @@ var posnInWindow;
 
 function startDrag(mouse)
 {
-    if (recipe.isOpened === false) {
-        mouse.accepted = false;
-        return;
-    }
     posnInWindow = paletteItem.mapToItem(window, 0, 0);
     startingMouse = { x: mouse.x, y: mouse.y }
     loadComponent();
@@ -23,7 +19,7 @@ function loadComponent() {
         return;
     }
 
-    itemComponent = Qt.createComponent(paletteItem.componentFile);
+    itemComponent = Qt.createComponent("ViewItem.qml");
     if (itemComponent.status == Component.Loading)  //Depending on the content, it can be ready or error immediately
         component.statusChanged.connect(createItem);
     else
@@ -32,8 +28,10 @@ function loadComponent() {
 
 function createItem() {
     if (itemComponent.status == Component.Ready && draggedItem == null) {
-        draggedItem = itemComponent.createObject(window, {"image": paletteItem.image, "x": posnInWindow.x, "y": posnInWindow.y, "z": 3});
-        // make sure created item is above the ground layer
+        draggedItem = itemComponent.createObject(view,
+                                                 {"image": "pics/VolleyBall.svg", //TODO: paletteItem.image,
+                                                  "x": posnInWindow.x, "y": posnInWindow.y, "z": 3});
+        // TODO for this spike: make size configurable
     } else if (itemComponent.status == Component.Error) {
         draggedItem = null;
         console.log("error creating component");
@@ -55,7 +53,7 @@ function endDrag(mouse)
     if (draggedItem == null)
         return;
 
-    if (draggedItem.y < toolbox.height) { //Don't drop it in the toolbox
+    if (draggedItem.x > toolbox.x) { //Don't drop it in the toolbox
         draggedItem.destroy();
         draggedItem = null;
     } else {
