@@ -44,7 +44,6 @@ import "content"
 //import "content/PaletteItem.qml"
 
 Rectangle {
-    color: "black"
 
     // Delegate for the recipes.  This delegate has two modes:
     // 1. List mode (default), which just shows the picture and title of the recipe.
