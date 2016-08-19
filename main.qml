@@ -1,14 +1,17 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.2
 import "listview"
 
-Row {
+RowLayout {
     id: window
     width: 800; height: 400
 
-    Rectangle {
+   Rectangle {
         id: view
-        anchors { left: parent.left; top: parent.top; right: toolbox.left}
-        height: width * 0.5
+
+        Layout.fillWidth: true
+        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+        Layout.preferredHeight: width * 0.5
         border.color: "black"
 
         gradient: Gradient {
@@ -30,6 +33,7 @@ Row {
     Toolbox {
         id: toolbox
         width: 250;
-        anchors {right: parent.right; top: parent.top; bottom: parent.bottom}
+        Layout.fillHeight: true
+        Layout.alignment: Qt.AlignRight
     }
 }
