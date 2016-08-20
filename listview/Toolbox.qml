@@ -101,6 +101,7 @@ Rectangle {
                         text: "%1x %2".arg(count).arg(name)
                         font.bold: true; font.pointSize: 14
                         wrapMode: Text.Wrap
+                        visible: !recipe.isOpened
                     }
                     // A button to close the detailed view, i.e. set the state back to default ('').
                     Button {
@@ -113,9 +114,20 @@ Rectangle {
             }
 
             Text {
+                id: secondTitle
+                anchors { top: topLayout.bottom }
+                text: "%1x %2".arg(count).arg(name)
+                font.bold: true; font.pointSize: 14
+                wrapMode: Text.Wrap
+                width: parent.width-14
+                x: 10
+                visible: recipe.isOpened
+            }
+
+            Text {
                 id: tooltipText
                 text: tooltip
-                anchors { top: topLayout.bottom }
+                anchors { top: secondTitle.bottom }
                 wrapMode: Text.Wrap
                 width: parent.width-14
                 x: 10
@@ -129,7 +141,7 @@ Rectangle {
                 PropertyChanges { target: background; color: "white" }
                 PropertyChanges { target: recipeImage; width: 130; height: 130 } // Make picture bigger
                 PropertyChanges { target: recipe; isOpened: true; } // Make details visible
-                PropertyChanges { target: recipe; height: tooltipText.height + 20 + recipeImage.height } // Ensure we can see the full tooltip+image
+                PropertyChanges { target: recipe; height: tooltipText.height + secondTitle.height + 20 + recipeImage.height } // Ensure we can see the full tooltip+image
 
                 // Move the list so that this item is at the top.
                 PropertyChanges { target: recipe.ListView.view; explicit: true; contentY: recipe.y }
