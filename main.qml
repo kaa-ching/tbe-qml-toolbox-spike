@@ -10,7 +10,7 @@ RowLayout {
         return "image://tbe/"+A;
     }
 
-    property real theScale: 150
+    property real theScale: 250
 
    Rectangle {
         id: view
