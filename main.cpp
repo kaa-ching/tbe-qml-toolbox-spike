@@ -38,12 +38,12 @@
 **
 ****************************************************************************/
 
-
 #include <QDir>
 #include <QGuiApplication>
 #include <QQmlEngine>
-#include <QQmlFileSelector>
 #include <QQuickView> //Not using QQmlApplicationEngine because many examples don't have a Window{}
+
+#include "ImageProvider.h"
 
 int main(int argc, char* argv[])
 {
@@ -52,6 +52,10 @@ int main(int argc, char* argv[])
     app.setOrganizationDomain("qt-project.org");
     app.setApplicationName(QFileInfo(app.applicationFilePath()).baseName());
     QQuickView view;
+
+    QQmlEngine *engine = view.engine();
+    engine->addImageProvider(QLatin1String("tbe"), new ImageProvider);
+
     view.connect(view.engine(), &QQmlEngine::quit, &app, &QCoreApplication::quit);
     view.setSource(QUrl("qrc:///views/main.qml"));
     if (view.status() == QQuickView::Error)

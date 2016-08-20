@@ -1,7 +1,10 @@
 TEMPLATE = app
 
 QT += quick qml
-SOURCES += main.cpp
+CONFIG += c++11
+
+SOURCES += main.cpp \
+    ImageProvider.cpp
 RESOURCES += \
     views.qrc
 
@@ -10,3 +13,6 @@ INSTALLS += target
 
 DISTFILES += \
     main.qml
+
+HEADERS += \
+    ImageProvider.h
