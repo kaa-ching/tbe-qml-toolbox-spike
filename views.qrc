@@ -5,10 +5,7 @@
         <file>listview/content/PaletteItem.qml</file>
         <file>main.qml</file>
         <file>listview/content/RecipesModel.qml</file>
-        <file>listview/content/pics/LeftRamp.svg</file>
-        <file>listview/content/pics/Balloon.svg</file>
         <file>listview/content/pics/VolleyBall.svg</file>
-        <file>listview/content/pics/pinguswalkleft.png</file>
         <file>listview/content/ViewItem.qml</file>
     </qresource>
 </RCC>

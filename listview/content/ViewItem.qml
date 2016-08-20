@@ -2,7 +2,9 @@ import QtQuick 2.0
 
 Image {
     property bool created: false
+
     property string image
+    source: image
 
     // TODO: Must be configurable (duh)
     width: 50
@@ -14,6 +16,5 @@ Image {
     property bool isRotate  : false
     property bool isColliding : false
 
-    source: image
 
 }

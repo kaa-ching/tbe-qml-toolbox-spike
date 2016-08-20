@@ -90,7 +90,7 @@ Rectangle {
                 PaletteItem {
                     id: recipeImage
                     width: 50; height: 50
-                    source: picture
+                    source: img(picture)
                 }
 
                 Column {

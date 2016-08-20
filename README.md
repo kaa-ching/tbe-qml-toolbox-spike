@@ -3,9 +3,10 @@
 Done:
  * show how Klaas envisions new toolbox
  * make D&D work from both small and large view
+ * implement QQuickImageProvider that can search directories for svg/png/jpg
 
 TODO:
- * implement QQuickImageProvider that can search directories for svg/png/jpg
+ * when enlarged, clicking anywhere outside should shrink item again
  * make dragged/dropped objects match the menu
  * resizing/scaling of objects
  * make counts work

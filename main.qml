@@ -6,6 +6,10 @@ RowLayout {
     id: window
     width: 800; height: 400
 
+    function img(A) {
+        return "image://tbe/"+A;
+    }
+
    Rectangle {
         id: view
 
