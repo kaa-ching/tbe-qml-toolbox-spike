@@ -37,5 +37,26 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-#include "shared.h"
-DECLARATIVE_EXAMPLE_MAIN(views/main)
+
+
+#include <QDir>
+#include <QGuiApplication>
+#include <QQmlEngine>
+#include <QQmlFileSelector>
+#include <QQuickView> //Not using QQmlApplicationEngine because many examples don't have a Window{}
+
+int main(int argc, char* argv[])
+{
+    QGuiApplication app(argc,argv);
+    app.setOrganizationName("QtProject");
+    app.setOrganizationDomain("qt-project.org");
+    app.setApplicationName(QFileInfo(app.applicationFilePath()).baseName());
+    QQuickView view;
+    view.connect(view.engine(), &QQmlEngine::quit, &app, &QCoreApplication::quit);
+    view.setSource(QUrl("qrc:///views/main.qml"));
+    if (view.status() == QQuickView::Error)
+        return -1;
+    view.setResizeMode(QQuickView::SizeRootObjectToView);
+    view.show();
+    return app.exec();
+}
