@@ -29,7 +29,7 @@ function loadComponent() {
 function createItem() {
     if (itemComponent.status == Component.Ready && draggedItem == null) {
         draggedItem = itemComponent.createObject(view,
-                                                 {"image": "pics/VolleyBall.svg", //TODO: paletteItem.image,
+                                                 {"image": img(picture),
                                                   "x": posnInWindow.x, "y": posnInWindow.y, "z": 3,
                                                  "width": theScale*owidth, "height": theScale*oheight});
     } else if (itemComponent.status == Component.Error) {

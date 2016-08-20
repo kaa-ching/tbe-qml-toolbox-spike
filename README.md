@@ -6,10 +6,10 @@ Done:
  * implement QQuickImageProvider that can search directories for svg/png/jpg
  * when enlarged, make title text sit below object
  * resizing/scaling of objects
+ * make dragged/dropped objects match the menu
 
 TODO:
  * when enlarged, clicking anywhere outside should shrink item again
- * make dragged/dropped objects match the menu
  * make counts work
  * implement "empty"
  * populate toolbox from C++
