@@ -139,7 +139,7 @@ Rectangle {
                 name: "Details"
 
                 PropertyChanges { target: background; color: "white" }
-                PropertyChanges { target: recipeImage; width: 130; height: 130 } // Make picture bigger
+                PropertyChanges { target: recipeImage; width: theScale*owidth; height: theScale*oheight } // Make picture bigger
                 PropertyChanges { target: recipe; isOpened: true; } // Make details visible
                 PropertyChanges { target: recipe; height: tooltipText.height + secondTitle.height + 20 + recipeImage.height } // Ensure we can see the full tooltip+image
 

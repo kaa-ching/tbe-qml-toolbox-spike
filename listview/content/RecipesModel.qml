@@ -45,31 +45,31 @@ ListModel {
         name: "Volley Ball"
         count: 3
         picture: "VolleyBall"
-        width: 0.21
-        height: 0.21
+        owidth: 0.21
+        oheight: 0.21
         tooltip: "A volleyball is light and very bouncy."
     }
     ListElement {
         name: "Left Ramp"
         count: 1
-        width: 1.0
-        height: 0.4
+        owidth: 1.0
+        oheight: 0.4
         picture: "LeftRamp"
         tooltip: "This is a ramp.\nThe left is lower than the right, so things slide to the left."
     }
     ListElement {
         name: "Penguin"
         count: 2
-        width: 0.28
-        height: 0.28
+        owidth: 0.28
+        oheight: 0.28
         picture: "pinguswalkleft"
         tooltip: "A penguin walks left or right and turns around when it collides with something heavy. It can push light objects around. It also likes to slide down slopes but can’t take much abuse."
     }
     ListElement {
         name: "Balloon"
         count: 5
-        width: 0.27
-        height: 0.36
+        owidth: 0.27
+        oheight: 0.36
         picture: "Balloon"
         tooltip: "A helium balloon. Lighter than air, it moves up.\nIt will pop when it hits sharp objects or gets squashed."
     }

@@ -30,8 +30,8 @@ function createItem() {
     if (itemComponent.status == Component.Ready && draggedItem == null) {
         draggedItem = itemComponent.createObject(view,
                                                  {"image": "pics/VolleyBall.svg", //TODO: paletteItem.image,
-                                                  "x": posnInWindow.x, "y": posnInWindow.y, "z": 3});
-        // TODO for this spike: make size configurable
+                                                  "x": posnInWindow.x, "y": posnInWindow.y, "z": 3,
+                                                 "width": theScale*owidth, "height": theScale*oheight});
     } else if (itemComponent.status == Component.Error) {
         draggedItem = null;
         console.log("error creating component");
