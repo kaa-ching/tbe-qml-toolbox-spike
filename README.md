@@ -8,14 +8,14 @@ Done:
  * resizing/scaling of objects
  * make dragged/dropped objects match the menu
  * make CMake work
-
-TODO:
- * when enlarged, clicking anywhere outside should shrink item again
- * implement "empty"
  * populate toolbox from C++
 
+TODO:
+ * make counting down after D&D work
+ * implement "empty"
+ * when enlarged, clicking anywhere outside should shrink item again
+
 NOT GOING TO DO:
- * make counts work
- * check i18n
+ * check how to do i18n
  * integrate with tbe-qml-ui-spike
- * drag&drop back into toolbox
+ * drag&drop items back into toolbox

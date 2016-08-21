@@ -40,10 +40,12 @@
 
 #include <QDir>
 #include <QGuiApplication>
+#include <QQmlContext>
 #include <QQmlEngine>
 #include <QQuickView> //Not using QQmlApplicationEngine because many examples don't have a Window{}
 
 #include "ImageProvider.h"
+#include "gui/ToolboxGroup.h"
 
 int main(int argc, char* argv[])
 {
@@ -55,6 +57,16 @@ int main(int argc, char* argv[])
 
     QQmlEngine *engine = view.engine();
     engine->addImageProvider(QLatin1String("tbe"), new ImageProvider);
+
+    qmlRegisterType<ToolboxGroup>("TBEView", 1, 0, "ToolboxGroup");
+
+    QList<QObject*> myTBGList;
+    myTBGList.append(new ToolboxGroup("Volley Ball", 3, 0.21, 0.21, "VolleyBall", "A volleyball is light and very bouncy."));
+    myTBGList.append(new ToolboxGroup("Left Ramp", 1, 1.0, 0.4, "LeftRamp", "This is a ramp.\nThe left is lower than the right, so things slide to the left."));
+    myTBGList.append(new ToolboxGroup("Penguin", 2, 0.28, 0.28, "pinguswalkleft", "A penguin walks left or right and turns around when it collides with something heavy. It can push light objects around. It also likes to slide down slopes but can’t take much abuse."));
+    myTBGList.append(new ToolboxGroup("Balloon", 5, 0.27, 0.36, "Balloon", "A helium balloon. Lighter than air, it moves up.\nIt will pop when it hits sharp objects or gets squashed."));
+    QQmlContext *ctxt = view.rootContext();
+    ctxt->setContextProperty("myToolboxModel", QVariant::fromValue(myTBGList));
 
     view.connect(view.engine(), &QQmlEngine::quit, &app, &QCoreApplication::quit);
     view.setSource(QUrl("qrc:/main.qml"));

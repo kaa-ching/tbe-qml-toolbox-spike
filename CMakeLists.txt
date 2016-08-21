@@ -9,7 +9,7 @@ find_package(Qt5 COMPONENTS Quick Core Svg Widgets Xml)
 # to make the QML files appear in Qt Creator in a nice fashion
 FILE(GLOB QML_SRC "*.qml" "gui/*.qml" "README.md")
 
-set(SRC_LIST main.cpp ImageProvider.cpp)
+set(SRC_LIST main.cpp ImageProvider.cpp gui/ToolboxGroup.cpp)
 qt5_add_resources(RESOURCES main.qrc gui/gui.qrc)
 add_executable(tbe-qml-toolbox-spike ${SRC_LIST} ${RESOURCES})
 ADD_CUSTOM_TARGET(be-qml-toolbox-spike SOURCES ${QML_SRC})

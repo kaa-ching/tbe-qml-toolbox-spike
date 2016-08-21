@@ -163,7 +163,7 @@ Rectangle {
     ListView {
         id: listView
         anchors.fill: parent
-        model: RecipesModel {}
+        model: myToolboxModel
         delegate: recipeDelegate
     }
 }

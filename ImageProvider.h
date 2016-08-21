@@ -3,6 +3,7 @@
 
 #include <QQuickImageProvider>
 
+/// This class provides pixmaps to the QML Engine, you don't need to call it directly from QML.
 class ImageProvider : public QQuickImageProvider
 {
 public:
