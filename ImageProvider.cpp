@@ -43,9 +43,8 @@ QPixmap ImageProvider::requestPixmap(const QString &aPixmapName,
 
     // we have several locations to search for:
     QStringList mySearchPath;
-    mySearchPath << "../listview/content/pics";
-    mySearchPath << "content/pics";
-    mySearchPath << "listview/content/pics";
+    mySearchPath << "../images";
+    mySearchPath << "images";
     mySearchPath << "qrc:/";    // this is Qt-speak for compiled-in resources
 
     for (int i = 0; i < mySearchPath.count() + 1; i++) {

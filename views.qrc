@@ -1,11 +1,10 @@
 <RCC>
-    <qresource prefix="/views">
-        <file>listview/Toolbox.qml</file>
-        <file>listview/content/itemCreation.js</file>
-        <file>listview/content/PaletteItem.qml</file>
+    <qresource>
+        <file>gui/Toolbox.qml</file>
+        <file>gui/itemCreation.js</file>
+        <file>gui/PaletteItem.qml</file>
         <file>main.qml</file>
-        <file>listview/content/RecipesModel.qml</file>
-        <file>listview/content/pics/VolleyBall.svg</file>
-        <file>listview/content/ViewItem.qml</file>
+        <file>gui/RecipesModel.qml</file>
+        <file>gui/ViewItem.qml</file>
     </qresource>
 </RCC>

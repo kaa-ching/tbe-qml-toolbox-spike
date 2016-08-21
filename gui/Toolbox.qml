@@ -40,8 +40,7 @@
 
 import QtQuick 2.0
 import QtQuick.Controls 1.4
-import "content"
-//import "content/PaletteItem.qml"
+//import "gui"
 
 Rectangle {
 

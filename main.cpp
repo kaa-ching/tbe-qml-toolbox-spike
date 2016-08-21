@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
     engine->addImageProvider(QLatin1String("tbe"), new ImageProvider);
 
     view.connect(view.engine(), &QQmlEngine::quit, &app, &QCoreApplication::quit);
-    view.setSource(QUrl("qrc:///views/main.qml"));
+    view.setSource(QUrl("qrc:/main.qml"));
     if (view.status() == QQuickView::Error)
         return -1;
     view.setResizeMode(QQuickView::SizeRootObjectToView);
