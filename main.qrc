@@ -1,10 +1,5 @@
 <RCC>
     <qresource>
-        <file>gui/Toolbox.qml</file>
-        <file>gui/itemCreation.js</file>
-        <file>gui/PaletteItem.qml</file>
         <file>main.qml</file>
-        <file>gui/RecipesModel.qml</file>
-        <file>gui/ViewItem.qml</file>
     </qresource>
 </RCC>
