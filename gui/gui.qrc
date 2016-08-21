@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/gui">
+        <file>Toolbox.qml</file>
+        <file>itemCreation.js</file>
+        <file>PaletteItem.qml</file>
+        <file>RecipesModel.qml</file>
+        <file>ViewItem.qml</file>
+    </qresource>
+</RCC>
