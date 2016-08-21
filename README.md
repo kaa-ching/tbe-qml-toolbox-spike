@@ -11,7 +11,11 @@ Done:
 
 TODO:
  * when enlarged, clicking anywhere outside should shrink item again
- * make counts work
  * implement "empty"
  * populate toolbox from C++
 
+NOT GOING TO DO:
+ * make counts work
+ * check i18n
+ * integrate with tbe-qml-ui-spike
+ * drag&drop back into toolbox
