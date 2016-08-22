@@ -14,6 +14,7 @@ Done:
  * only one item should be 'enlarged' at a time
 
 TODO:
+ * make toolbox graphics match current TBE style better
 
 NOT GOING TO DO:
  * check how to do i18n
