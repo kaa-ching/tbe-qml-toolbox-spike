@@ -13,7 +13,7 @@ RowLayout {
     property real theScale: 250
 
    Rectangle {
-        id: view
+        id: gameView
 
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignTop | Qt.AlignLeft

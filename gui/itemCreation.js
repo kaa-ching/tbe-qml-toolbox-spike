@@ -8,6 +8,8 @@ function startDrag(mouse)
     posnInWindow = paletteItem.mapToItem(window, 0, 0);
     startingMouse = { x: mouse.x, y: mouse.y }
     loadComponent();
+    // disable flicking in ListView
+    listView.interactive = false;
 }
 
 //Creation is split into two functions due to an asynchronous wait while
@@ -28,7 +30,7 @@ function loadComponent() {
 
 function createItem() {
     if (itemComponent.status == Component.Ready && draggedItem == null) {
-        draggedItem = itemComponent.createObject(view,
+        draggedItem = itemComponent.createObject(gameView,
                                                  {"image": img(picture),
                                                   "x": posnInWindow.x, "y": posnInWindow.y, "z": 3,
                                                  "width": theScale*owidth, "height": theScale*oheight});
@@ -50,16 +52,22 @@ function continueDrag(mouse)
 
 function endDrag(mouse)
 {
+    listView.interactive = true;
+
     if (draggedItem == null)
         return;
 
-    if (draggedItem.x > toolbox.x) { //Don't drop it in the toolbox
-        draggedItem.destroy();
-        draggedItem = null;
-    } else {
+    if (draggedItem.x > gameView.x
+            && draggedItem.x+draggedItem.width < gameView.x+gameView.width
+            && draggedItem.y > gameView.y
+            && draggedItem.y+draggedItem.height < gameView.y+gameView.height
+            ) { // Only drop in gameView
         draggedItem.created = true;
         draggedItem = null;
         count --;
+    } else {
+        draggedItem.destroy();
+        draggedItem = null;
     }
 }
 
