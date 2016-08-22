@@ -12,7 +12,6 @@ Done:
  * make counting down after D&D work
  * implement "empty"
  * only one item should be 'enlarged' at a time
- * ListView jumps back when scrolling
 
 TODO:
 
