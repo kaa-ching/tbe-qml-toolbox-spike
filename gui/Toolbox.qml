@@ -59,6 +59,14 @@ Rectangle {
             width: listView.width
             height: 70
 
+            function closeItem() {
+                state = '';
+            }
+
+            Component.onCompleted: {
+                listView.allClose.connect(closeItem)
+            }
+
             // A simple rounded rectangle for the background
             Rectangle {
                 id: background
@@ -74,7 +82,7 @@ Rectangle {
             //! [1]
             MouseArea {
                 anchors.fill: parent
-                onClicked: recipe.state = 'Details';
+                onClicked: { listView.allClose(); recipe.state = 'Details'; }
             }
 
             // Lay out the page: picture, title and ingredients at the top, and method at the
@@ -162,5 +170,7 @@ Rectangle {
         anchors.fill: parent
         model: myToolboxModel
         delegate: recipeDelegate
+
+        signal allClose()
     }
 }
