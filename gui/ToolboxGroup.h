@@ -30,7 +30,7 @@ public:
     QString tooltip();
 
     void setCount(int aNewCount)
-    {m_count = aNewCount; emit countChanged(); printf("count adjusted to %d\n", m_count);}
+    {m_count = aNewCount; emit countChanged();}
 
 signals:
     void nameChanged();

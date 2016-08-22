@@ -44,9 +44,7 @@ import "itemCreation.js" as Code
 Image {
     id: paletteItem
 
-    property string image
-
-    source: image
+    // source property is set by parent
 
     MouseArea {
         anchors.fill: parent
@@ -56,7 +54,7 @@ Image {
         onClicked: mouse.accepted = false;
 
         // we keep drag&drop events here
-        onPressed: Code.startDrag(mouse);
+        onPressed: if (count > 0) Code.startDrag(mouse);
         onPositionChanged: Code.continueDrag(mouse);
         onReleased: Code.endDrag(mouse);
     }

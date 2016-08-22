@@ -89,7 +89,7 @@ Rectangle {
                 PaletteItem {
                     id: recipeImage
                     width: 50; height: 50
-                    source: img(picture)
+                    source: count > 0 ? img(picture) : img("EmptyGroup")
                 }
 
                 Column {

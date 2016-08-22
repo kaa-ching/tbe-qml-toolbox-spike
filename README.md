@@ -10,9 +10,9 @@ Done:
  * make CMake work
  * populate toolbox from C++
  * make counting down after D&D work
+ * implement "empty"
 
 TODO:
- * implement "empty"
  * when enlarged, clicking anywhere outside should shrink item again
 
 NOT GOING TO DO:
