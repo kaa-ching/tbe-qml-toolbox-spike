@@ -14,6 +14,7 @@ Done:
 
 TODO:
  * when enlarged, clicking anywhere outside should shrink item again
+ * ListView jumps back when scrolling
 
 NOT GOING TO DO:
  * check how to do i18n

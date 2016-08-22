@@ -92,24 +92,21 @@ Rectangle {
                     source: count > 0 ? img(picture) : img("EmptyGroup")
                 }
 
-                Column {
-                    width: background.width - recipeImage.width - 20; height: recipeImage.height
-                    spacing: 5
-
-                    Text {
-                        text: "%1x %2".arg(count).arg(name)
-                        font.bold: true; font.pointSize: 14
-                        wrapMode: Text.Wrap
-                        visible: !recipe.isOpened
-                    }
-                    // A button to close the detailed view, i.e. set the state back to default ('').
-                    Button {
-                        visible: recipe.isOpened
-                        text: "Close"
-
-                        onClicked: recipe.state = '';
-                    }
+                Text {
+                    text: "%1x %2".arg(count).arg(name)
+                    font.bold: true; font.pointSize: 14
+                    width: background.width - recipeImage.width - 20
+                    wrapMode: Text.Wrap
+                    visible: !recipe.isOpened
                 }
+            }
+            // A button to close the detailed view, i.e. set the state back to default ('').
+            ToolButton {
+                anchors {right: parent.right; top: topLayout.top}
+                visible: recipe.isOpened
+                iconSource: "qrc:/gui/Shrink.png"
+
+                onClicked: recipe.state = '';
             }
 
             Text {

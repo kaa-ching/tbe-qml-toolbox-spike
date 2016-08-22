@@ -4,5 +4,6 @@
         <file>itemCreation.js</file>
         <file>PaletteItem.qml</file>
         <file>ViewItem.qml</file>
+        <file alias="Shrink.png">../images/Shrink.png</file>
     </qresource>
 </RCC>

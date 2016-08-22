@@ -89,6 +89,7 @@ QPixmap ImageProvider::requestPixmap(const QString &aPixmapName,
         myTempPixmap = QPixmap(myFullPathName).scaled(myRequestedSize);
     }
 
+    printf("pixmap size: %dx%d\n", myRequestedSize.width(), myRequestedSize.height());
     if (nullptr != aFinalSizePr) {
         *aFinalSizePr = myRequestedSize;
     }
