@@ -79,15 +79,14 @@ Rectangle {
             // This mouse region covers the entire delegate.
             // When clicked it changes mode to 'Details'.  If we are already
             // in Details mode, then no change will happen.
-            //! [1]
             MouseArea {
                 anchors.fill: parent
                 onClicked: { listView.allClose(); recipe.state = 'Details'; }
             }
 
-            // Lay out the page: picture, title and ingredients at the top, and method at the
-            // bottom.
-            // Note that elements that should not be visible in the list track recipe.isOpened.
+            // Lay out the page: picture, title and close button at the top,
+            // and tooltip at the bottom.
+            // Note that elements that should not be visible in the list track 'recipe.isOpened'.
 
             Row {
                 id: topLayout
@@ -101,6 +100,7 @@ Rectangle {
                 }
 
                 Text {
+                    id: firstTitle
                     text: "%1x %2".arg(count).arg(name)
                     font.bold: true; font.pointSize: 14
                     width: background.width - recipeImage.width - 20
@@ -117,6 +117,7 @@ Rectangle {
                 onClicked: recipe.state = '';
             }
 
+            // either the firstTitle (small) or the secondTitle (enlarged) is visible
             Text {
                 id: secondTitle
                 anchors { top: topLayout.bottom }
@@ -146,12 +147,6 @@ Rectangle {
                 PropertyChanges { target: recipeImage; width: theScale*owidth; height: theScale*oheight } // Make picture bigger
                 PropertyChanges { target: recipe; isOpened: true; } // Make details visible
                 PropertyChanges { target: recipe; height: tooltipText.height + secondTitle.height + 20 + recipeImage.height } // Ensure we can see the full tooltip+image
-
-                // Move the list so that this item is at the top.
-                PropertyChanges { target: recipe.ListView.view; explicit: true; contentY: recipe.y }
-
-                // Disallow flicking while we're in detailed view
-                PropertyChanges { target: recipe.ListView.view; interactive: false }
             }
 
             transitions: Transition {
