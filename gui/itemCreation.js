@@ -59,6 +59,7 @@ function endDrag(mouse)
     } else {
         draggedItem.created = true;
         draggedItem = null;
+        count --;
     }
 }
 

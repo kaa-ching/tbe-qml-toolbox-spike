@@ -9,9 +9,9 @@ Done:
  * make dragged/dropped objects match the menu
  * make CMake work
  * populate toolbox from C++
+ * make counting down after D&D work
 
 TODO:
- * make counting down after D&D work
  * implement "empty"
  * when enlarged, clicking anywhere outside should shrink item again
 

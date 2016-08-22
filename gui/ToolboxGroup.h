@@ -16,7 +16,7 @@ public:
                  QObject *parent = 0);
 
     Q_PROPERTY(QString name MEMBER m_name NOTIFY nameChanged)
-    Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(int count READ count WRITE setCount NOTIFY countChanged)
     Q_PROPERTY(qreal owidth MEMBER  m_width NOTIFY owidthChanged)
     Q_PROPERTY(qreal oheight MEMBER m_height NOTIFY oheightChanged)
     Q_PROPERTY(QString picture MEMBER m_picture NOTIFY pictureChanged)
@@ -28,6 +28,9 @@ public:
     qreal oheight();
     QString picture();
     QString tooltip();
+
+    void setCount(int aNewCount)
+    {m_count = aNewCount; emit countChanged(); printf("count adjusted to %d\n", m_count);}
 
 signals:
     void nameChanged();
