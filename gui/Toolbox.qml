@@ -91,7 +91,7 @@ Rectangle {
 
             Row {
                 id: topLayout
-                x: 10; y: 10; height: recipeImage.height; width: parent.width-20
+                x: 10; y: 10; height: recipeImage.height; width: parent.width-x*2
                 spacing: 10
 
                 PaletteItem {
@@ -103,9 +103,12 @@ Rectangle {
                 Text {
                     id: firstTitle
                     y: -5
+                    width: topLayout.width - 50 - 15
+                    height: recipeImage.height + 5
                     text: "%1x\n%2".arg(count).arg(name)
-                    font.bold: true; font.pointSize: 12
-                    width: background.width - recipeImage.width - 20
+                    font.bold: true; font.pointSize: 14
+                    minimumPointSize: 8
+                    fontSizeMode: Text.Fit
                     wrapMode: Text.Wrap
                     visible: !recipe.isOpened
                     verticalAlignment: Qt.AlignVCenter
