@@ -38,7 +38,7 @@ RowLayout {
 
     Toolbox {
         id: toolbox
-        width: 250;
+        width: 200;
         Layout.fillHeight: true
         Layout.alignment: Qt.AlignRight
     }

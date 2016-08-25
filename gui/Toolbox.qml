@@ -71,9 +71,10 @@ Rectangle {
             Rectangle {
                 id: background
                 x: 2; y: 2; width: parent.width - x*2; height: parent.height - y*2
-                color: "ivory"
-                border.color: "orange"
-                radius: 5
+                color: "whitesmoke"
+                border.color: "darkgrey"
+                border.width: 3
+                radius: 7
             }
 
             // This mouse region covers the entire delegate.
@@ -90,7 +91,7 @@ Rectangle {
 
             Row {
                 id: topLayout
-                x: 10; y: 10; height: recipeImage.height; width: parent.width
+                x: 10; y: 10; height: recipeImage.height; width: parent.width-20
                 spacing: 10
 
                 PaletteItem {
@@ -101,16 +102,18 @@ Rectangle {
 
                 Text {
                     id: firstTitle
-                    text: "%1x %2".arg(count).arg(name)
-                    font.bold: true; font.pointSize: 14
+                    y: -5
+                    text: "%1x\n%2".arg(count).arg(name)
+                    font.bold: true; font.pointSize: 12
                     width: background.width - recipeImage.width - 20
                     wrapMode: Text.Wrap
                     visible: !recipe.isOpened
+                    verticalAlignment: Qt.AlignVCenter
                 }
             }
             // A button to close the detailed view, i.e. set the state back to default ('').
             ToolButton {
-                anchors {right: parent.right; top: topLayout.top}
+                anchors {right: topLayout.right; top: topLayout.top}
                 visible: recipe.isOpened
                 iconSource: "qrc:/gui/Shrink.png"
 
@@ -133,6 +136,7 @@ Rectangle {
                 id: tooltipText
                 text: tooltip
                 anchors { top: secondTitle.bottom }
+                font.bold: false; font.pointSize: 10
                 wrapMode: Text.Wrap
                 width: parent.width-14
                 x: 10
