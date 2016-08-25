@@ -55,9 +55,10 @@ Rectangle {
 
             // Create a property to contain the visibility of the details.
             property bool isOpened : false
+            property real iconSize: 50
 
             width: listView.width
-            height: 70
+            height: iconSize + 20
 
             function closeItem() {
                 state = '';
@@ -96,14 +97,14 @@ Rectangle {
 
                 PaletteItem {
                     id: recipeImage
-                    width: 50; height: 50
+                    width: iconSize; height: iconSize
                     source: count > 0 ? img(picture) : img("EmptyGroup")
                 }
 
                 Text {
                     id: firstTitle
                     y: -5
-                    width: topLayout.width - 50 - 15
+                    width: topLayout.width - recipeImage.width - 15
                     height: recipeImage.height + 5
                     text: "%1x\n%2".arg(count).arg(name)
                     font.bold: true; font.pointSize: 14
@@ -151,7 +152,9 @@ Rectangle {
                 name: "Details"
 
                 PropertyChanges { target: background; color: "white" }
-                PropertyChanges { target: recipeImage; width: theScale*owidth; height: theScale*oheight } // Make picture bigger
+                // Make image bigger (if not empty image)
+                PropertyChanges { target: recipeImage; width:  (count > 0) ? theScale*owidth  : iconSize;
+                                                       height: (count > 0) ? theScale*oheight : iconSize }
                 PropertyChanges { target: recipe; isOpened: true; } // Make details visible
                 PropertyChanges { target: recipe; height: tooltipText.height + secondTitle.height + 20 + recipeImage.height } // Ensure we can see the full tooltip+image
             }
