@@ -12,9 +12,9 @@ Done:
  * make counting down after D&D work
  * implement "empty"
  * only one item should be 'enlarged' at a time
+ * match current TBE style
 
 TODO:
- * make toolbox graphics match current TBE style better
 
 NOT GOING TO DO:
  * check how to do i18n
