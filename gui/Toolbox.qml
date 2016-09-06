@@ -67,16 +67,6 @@ Rectangle {
                 listView.allClose.connect(closeItem)
             }
 
-            // A simple rounded rectangle for the background
-            Rectangle {
-                id: background
-                x: 2; y: 2; width: parent.width - x*2; height: parent.height - y*2
-                color: "whitesmoke"
-                border.color: "darkgrey"
-                border.width: 3
-                radius: 7
-            }
-
             // This mouse region covers the entire delegate.
             // When clicked it changes mode to 'Details'.  If we are already
             // in Details mode, then no change will happen.
@@ -85,67 +75,79 @@ Rectangle {
                 onClicked: { listView.allClose(); recipe.state = 'Details'; }
             }
 
-            // Lay out the page: picture, title and close button at the top,
-            // and tooltip at the bottom.
-            // Note that elements that should not be visible in the list track 'recipe.isOpened'.
+            // A simple rounded rectangle for the background
+            Rectangle {
+                id: background
+                x: 2; y: 2; width: parent.width - x*2; height: parent.height - y*2
+                color: "whitesmoke"
+                border.color: "darkgrey"
+                border.width: 3
+                radius: 7
 
-            Row {
-                id: topLayout
-                x: 10; y: 10; height: recipeImage.height; width: parent.width-x*2
-                spacing: 10
+                clip: true
 
-                PaletteItem {
-                    id: recipeImage
-                    width: iconSize; height: iconSize
-                    source: count > 0 ? img(picture) : img("EmptyGroup")
+                // Lay out the page: picture, title and close button at the top,
+                // and tooltip at the bottom.
+                // Note that elements that should not be visible in the list track 'recipe.isOpened'.
+
+                Row {
+                    id: topLayout
+                    x: 10; y: 10; height: recipeImage.height; width: parent.width-x*2
+                    spacing: 10
+
+                    PaletteItem {
+                        id: recipeImage
+                        width: iconSize; height: iconSize
+                        source: count > 0 ? img(picture) : img("EmptyGroup")
+                    }
+
+                    Text {
+                        id: firstTitle
+                        y: -5
+                        width: topLayout.width - recipeImage.width - 15
+                        height: recipeImage.height + 5
+                        text: "%1x\n%2".arg(count).arg(name)
+                        font.bold: true; font.pointSize: 14
+                        minimumPointSize: 8
+                        fontSizeMode: Text.Fit
+                        wrapMode: Text.Wrap
+                        visible: !recipe.isOpened
+                        verticalAlignment: Qt.AlignVCenter
+                    }
+                }
+                // A button to close the detailed view, i.e. set the state back to default ('').
+                ToolButton {
+                    anchors {right: topLayout.right; top: topLayout.top}
+                    visible: recipe.isOpened
+                    iconSource: "qrc:/gui/Shrink.png"
+
+                    onClicked: recipe.state = '';
+                }
+
+                // either the firstTitle (small) or the secondTitle (enlarged) is visible
+                Text {
+                    id: secondTitle
+                    anchors { top: topLayout.bottom }
+                    text: "%1x %2".arg(count).arg(name)
+                    font.bold: true; font.pointSize: 14
+                    wrapMode: Text.Wrap
+                    width: parent.width-14
+                    x: 10
+                    visible: recipe.isOpened
                 }
 
                 Text {
-                    id: firstTitle
-                    y: -5
-                    width: topLayout.width - recipeImage.width - 15
-                    height: recipeImage.height + 5
-                    text: "%1x\n%2".arg(count).arg(name)
-                    font.bold: true; font.pointSize: 14
-                    minimumPointSize: 8
-                    fontSizeMode: Text.Fit
+                    id: tooltipText
+                    text: tooltip
+                    anchors { top: secondTitle.bottom }
+                    font.bold: false; font.pointSize: 10
                     wrapMode: Text.Wrap
-                    visible: !recipe.isOpened
-                    verticalAlignment: Qt.AlignVCenter
+                    width: parent.width-14
+                    x: 10
+                    visible: recipe.isOpened
                 }
-            }
-            // A button to close the detailed view, i.e. set the state back to default ('').
-            ToolButton {
-                anchors {right: topLayout.right; top: topLayout.top}
-                visible: recipe.isOpened
-                iconSource: "qrc:/gui/Shrink.png"
 
-                onClicked: recipe.state = '';
             }
-
-            // either the firstTitle (small) or the secondTitle (enlarged) is visible
-            Text {
-                id: secondTitle
-                anchors { top: topLayout.bottom }
-                text: "%1x %2".arg(count).arg(name)
-                font.bold: true; font.pointSize: 14
-                wrapMode: Text.Wrap
-                width: parent.width-14
-                x: 10
-                visible: recipe.isOpened
-            }
-
-            Text {
-                id: tooltipText
-                text: tooltip
-                anchors { top: secondTitle.bottom }
-                font.bold: false; font.pointSize: 10
-                wrapMode: Text.Wrap
-                width: parent.width-14
-                x: 10
-                visible: recipe.isOpened
-            }
-
 
             states: State {
                 name: "Details"
@@ -153,7 +155,7 @@ Rectangle {
                 PropertyChanges { target: background; color: "white" }
                 // Make image bigger (if not empty image)
                 PropertyChanges { target: recipeImage; width:  (count > 0) ? theScale*owidth  : iconSize;
-                                                       height: (count > 0) ? theScale*oheight : iconSize }
+                    height: (count > 0) ? theScale*oheight : iconSize }
                 PropertyChanges { target: recipe; isOpened: true; } // Make details visible
                 PropertyChanges { target: recipe; height: tooltipText.height + secondTitle.height + 20 + recipeImage.height } // Ensure we can see the full tooltip+image
             }
