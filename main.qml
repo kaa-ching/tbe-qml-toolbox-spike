@@ -14,6 +14,7 @@ RowLayout {
 
    Rectangle {
         id: gameView
+        z: 3
 
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignTop | Qt.AlignLeft
@@ -38,6 +39,8 @@ RowLayout {
 
     Toolbox {
         id: toolbox
+
+        z: 2
         width: 200;
         Layout.fillHeight: true
         Layout.alignment: Qt.AlignRight
